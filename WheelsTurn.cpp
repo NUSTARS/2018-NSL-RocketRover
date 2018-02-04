@@ -27,7 +27,7 @@ void goBackward(int in1a,int in2a, int in1b,int in2b){
     analogWrite(in2a, 0);
     analogWrite(in2b, 255);
 }
-void doBreak(int in1a,int in2a, int in1b,int in2b){
+void doBrake(int in1a,int in2a, int in1b,int in2b){
     analogWrite(in1a, 255);
     analogWrite(in1b, 255);
     analogWrite(in2a, 255);
