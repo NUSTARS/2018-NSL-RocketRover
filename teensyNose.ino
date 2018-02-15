@@ -12,19 +12,16 @@ void setup()
   int noseConePH = A1;
   int noseConeEN = A2;
   int closeNoseCone = A3;
-  int IMUsensor = A4;
+  bool isClosed = false;
 
 }
 
 void loop()
 {
-    if(analogRead(closeNoseCone)){
+    if((analogRead(closeNoseCone) > 512) && !isClosed){
         closeCone(noseConeNsleepPin,noseConePH, noseConeEN);
     }
-    if(analogRead(IMUsensor)){
+    if((analogRead(closeNoseCone) > 512) && isClosed){
         openCone(noseConeNsleepPin,noseConePH, noseConeEN);
     }
-  //If data comes in from XBee, send it out to serial monitor
-  float sensorValue = analogRead(A0);
-  Serial.println(sensorValue/1023*3.3);
 }
