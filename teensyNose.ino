@@ -20,8 +20,10 @@ void loop()
 {
     if((analogRead(closeNoseCone) > 512) && !isClosed){
         closeCone(noseConeNsleepPin,noseConePH, noseConeEN);
+        isClosed = !isClosed;
     }
     if((analogRead(closeNoseCone) > 512) && isClosed){
         openCone(noseConeNsleepPin,noseConePH, noseConeEN);
+        isClosed = !isClosed;
     }
 }
