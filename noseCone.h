@@ -1,3 +1,4 @@
-#include <SoftwareSerial.h>
+#include "Arduino.h"
 
-void openCone(int in1a,int in2a, int in1b,int in2b);
+void openCone(int nsleep,int PH, int EN);
+void closeCone(int nsleep,int PH, int EN);

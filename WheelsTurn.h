@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h>
+#include "Arduino.h"
 
 void goStraight(int in1a,int in2a, int in1b,int in2b);
 void turnLeft(int in1a,int in2a, int in1b,int in2b);
