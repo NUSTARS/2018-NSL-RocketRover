@@ -14,4 +14,11 @@ void closeCone(int nsleep,int PH, int EN){
     analogWrite(EN, 255); 
 }
 
+void holdCone(int nsleep, int PH, int EN) {
+  //No Movement
+  analogWrite(nsleep, 255);
+  analogWrite(PH, 0);
+  analogWrite(EN, 0);
+}
+
 
