@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h>
+#include "Arduino.h"
 
 void drive(int phase,int enable,int nsleep);
 void reverse(int phase,int enable,int nsleep);
