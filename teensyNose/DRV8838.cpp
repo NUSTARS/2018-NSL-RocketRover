@@ -1,5 +1,9 @@
 #include "DRV8838.h"
+<<<<<<< HEAD:DRV8838.cpp
 //for nosecone deployment
+=======
+
+>>>>>>> ed2f4ad52f2c1db0d70e6ea01dfee99add55eced:teensyNose/DRV8838.cpp
 
 void drive(int phase,int enable,int nsleep){
     analogWrite(phase, 0);
