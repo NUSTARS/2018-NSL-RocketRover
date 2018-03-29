@@ -12,6 +12,7 @@ void setup() {
   pinMode(right2, OUTPUT);
   pinMode(sleepPin, OUTPUT);
   digitalWrite(sleepPin, HIGH);
+  delay(30000);
   
 }
 
