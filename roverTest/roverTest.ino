@@ -16,17 +16,8 @@ void setup() {
 }
 
 void loop() {
-  forwards(left1, left2, right1, right2, 0);
-  delay(10000);
-  backwards(left1, left2, right1, right2, 0);
-  delay(10000);
-  forwards(left1, left2, right1, right2, 255);
-  delay(5000);
-  forwards(left1, left2, right1, right2, -255);
-  delay(5000);
-  backwards(left1, left2, right1, right2, 255);
-  delay(5000);
-  backwards(left1, left2, right1, right2, -255);
-  delay(5000);
-  
+  analogWrite(left1, 255);
+  analogWrite(left2, 0);
+  analogWrite(right1, 255);
+  analogWrite(right2, 255); 
 }
