@@ -19,5 +19,5 @@ void loop() {
   analogWrite(left1, 255);
   analogWrite(left2, 0);
   analogWrite(right1, 255);
-  analogWrite(right2, 255); 
+  analogWrite(right2, 0); 
 }
