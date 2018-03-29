@@ -41,11 +41,27 @@ void changeMode() {
   
   digitalWrite(13, HIGH);
   int counter = 0; 
-  while (digitalRead(buttonPin) == LOW && counter < 5000) { //LOW is on in this case (or touching)
-    delay(1);
-    counter++;
+  int countTime = millis();
+  while (digitalRead(buttonPin) == LOW) { //LOW is on in this case (or touching)
+    if (countTime > 5000) {
+      if (countTime%1000 < 500) {
+        digitalWrite(13, HIGH);
+      }
+      else {
+        digitalWrite(13, LOW);
+      }
+    }
+    else if (countTime > 7500) {
+      if (noseDirection == 0) {
+        openCone(noseConeNsleepPin, noseConePH, noseConeEN);
+      }
+      else {
+        closeCone(noseConeNsleepPin, noseConePH, noseConeEN);
+      }
+    }
   }
-  if (digitalRead(buttonPin) == LOW && counter == 5000) {
+ noseDirection = (noseDirection++)%2;
+  if (countTime <= 5000 && countTime < 7500) {
 
     Serial.println(noseDirection);
     int startTime = millis();
