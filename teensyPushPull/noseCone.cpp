@@ -2,13 +2,13 @@
 
 
 void openCone(int nsleep,int PH, int EN){
-    //Reverse
+    //Forwards
     analogWrite(nsleep, 255); 
     analogWrite(PH, 255); 
     analogWrite(EN, 159); 
 }
 void closeCone(int nsleep,int PH, int EN){
-    //Reverse
+    //Back
     analogWrite(nsleep, 255); 
     analogWrite(PH, 0); 
     analogWrite(EN, 159); 

@@ -46,19 +46,19 @@ void changeMode() {
     counter++;
   }
   if (digitalRead(buttonPin) == LOW && counter == 5000) {
-    noseDirection++;
-    noseDirection = noseDirection%2;
+
     Serial.println(noseDirection);
-    while (digitalRead(buttonPin) == LOW) {
-      if (noseDirection == 1) { 
-        openCone(noseConeNsleepPin,noseConePH, noseConeEN);
-      }
-      else if (noseDirection == 0) {
-        closeCone(noseConeNsleepPin,noseConePH, noseConeEN);
-      }
+    int startTime = millis();
+    while (millis() - startTime < 75000) {
+      openCone(noseConeNsleepPin, noseConePH, noseConeEN);
+    }
+    startTime = millis();
+    while (millis() - startTime < 25000) {
+      closeCone(noseConeNsleepPin, noseConePH, noseConeEN);
     }
   }
   digitalWrite(13, LOW);
+  holdCone(noseConeNsleepPin, noseConePH, noseConeEN);
 }
 
 void loop()
