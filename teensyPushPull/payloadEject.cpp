@@ -1,20 +1,20 @@
-#include "noseCone.h"
+#include "payloadEject.h"
 
 
-void openCone(int nsleep,int PH, int EN){
+void deployRover(int nsleep,int PH, int EN){
     //Forwards
     analogWrite(nsleep, 255); 
     analogWrite(PH, 255); 
     analogWrite(EN, 159); 
 }
-void closeCone(int nsleep,int PH, int EN){
+void retractRover(int nsleep,int PH, int EN){
     //Back
     analogWrite(nsleep, 255); 
     analogWrite(PH, 0); 
     analogWrite(EN, 159); 
 }
 
-void holdCone(int nsleep, int PH, int EN) {
+void holdRover(int nsleep, int PH, int EN) {
   //No Movement
   analogWrite(nsleep, 255);
   analogWrite(PH, 0);

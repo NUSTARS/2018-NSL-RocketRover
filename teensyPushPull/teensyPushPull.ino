@@ -1,10 +1,20 @@
-#include "noseCone.h"
+#include "payloadEject.h"
 
-int noseConeNsleepPin,noseConePH,noseConeEN;
-int closeNoseCone;
-bool isClosed;
+#define EJECTION_TRIGGER_TIME 5000
+#define SETUP_TRIGGER_TIME 7500
+#define EXTEND_TIME 75000
+#define RETRACT_TIME 60000
+
+
+#define PIN_SLEEP 22
+#define PIN_PHASE 21
+#define PIN_ENABLE 20
+#define PIN_COMMS 15
+#define PIN_LED 13
+
+
 int noseDirection;
-int buttonPin;
+
 
 void setup()
 {
@@ -12,68 +22,76 @@ void setup()
   // for the XBee. Make sure the baud rate matches the config
   // setting of your XBee.
   Serial.begin(19200);
-  noseConeNsleepPin = 22;
-  noseConePH = 21;
-  noseConeEN = 20;
+
   noseDirection = 0;
-  //closeNoseCone = A3;
-  buttonPin = 15;
-  isClosed = false;
-  pinMode(buttonPin, INPUT_PULLUP);
-  pinMode(13, OUTPUT);
-  attachInterrupt(buttonPin, changeMode, LOW);
+ 
+
+  pinMode(PIN_COMMS, INPUT_PULLUP);
+  pinMode(PIN_LED, OUTPUT);
+  attachInterrupt(PIN_COMMS, changeMode, LOW);
 
  
-  digitalWrite(13, HIGH); //13 is LED Stuff
+  digitalWrite(PIN_LED, HIGH); //PIN_LED is LED Stuff
   delay(100);
-  digitalWrite(13, LOW);
+  digitalWrite(PIN_LED, LOW);
   delay(100);
-  digitalWrite(13, HIGH);
+  digitalWrite(PIN_LED, HIGH);
   delay(250);
-  digitalWrite(13, LOW);
-  
-
+  digitalWrite(PIN_LED, LOW);
 }
 
 void changeMode() {
   Serial.write("ITS WORKING\n");
 
-  
-  digitalWrite(13, HIGH);
-  int counter = 0; 
-  while (digitalRead(buttonPin) == LOW && counter < 5000) { //LOW is on in this case (or touching)
-    delay(1);
-    counter++;
+  digitalWrite(PIN_LED, HIGH);
+
+  int countTime = millis();
+
+  while (digitalRead(PIN_COMMS) == LOW) { //LOW is on in this case (or touching)
+    if (millis() - countTime < EJECTION_TRIGGER_TIME) {
+      if (countTime%1000 < 500) {
+        digitalWrite(PIN_LED, HIGH);
+      }
+      else {
+        digitalWrite(PIN_LED, LOW);
+      }
+    }
+    else if (millis()-countTime > SETUP_TRIGGER_TIME) {
+      if (noseDirection == 0) {
+        deployRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
+      }
+      else {
+        retractRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
+      }
+    }
   }
-  if (digitalRead(buttonPin) == LOW && counter == 5000) {
+
+  if ((millis() - countTime) > SETUP_TRIGGER_TIME) {
+     noseDirection = (noseDirection++)%2;
+  }
+
+
+  if ((millis()- countTime) >= EJECTION_TRIGGER_TIME && (millis()-countTime) < SETUP_TRIGGER_TIME) {
 
     Serial.println(noseDirection);
+
     int startTime = millis();
-    while (millis() - startTime < 75000) {
-      openCone(noseConeNsleepPin, noseConePH, noseConeEN);
+    while (millis() - startTime < EXTEND_TIME) {
+      deployRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
     }
+
     startTime = millis();
-    while (millis() - startTime < 25000) {
-      closeCone(noseConeNsleepPin, noseConePH, noseConeEN);
+    while (millis() - startTime < RETRACT_TIME) {
+      retractRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
     }
   }
-  digitalWrite(13, LOW);
-  holdCone(noseConeNsleepPin, noseConePH, noseConeEN);
+
+
+  digitalWrite(PIN_LED, LOW);
+  holdRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
 }
 
 void loop()
 {
- 
-    holdCone(noseConeNsleepPin, noseConePH, noseConeEN);
-
-
-  
-//    if((analogRead(closeNoseCone) > 512) && !isClosed){
-//        closeCone(noseConeNsleepPin,noseConePH, noseConeEN);
-//        isClosed = !isClosed;
-//    }
-//    if((analogRead(closeNoseCone) > 512) && isClosed){
-//        openCone(noseConeNsleepPin,noseConePH, noseConeEN);
-//        isClosed = !isClosed;
-//    }
+    holdRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
 }
