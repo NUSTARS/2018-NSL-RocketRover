@@ -55,7 +55,7 @@ void changeMode() {
       else {
         digitalWrite(PIN_LED, LOW);
       }
-    }
+    } //change to be only one direction - opposite opening direction
     if (millis()-countTime > SETUP_TRIGGER_TIME) {
       if (noseDirection == 0) {
         deployRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
@@ -67,13 +67,12 @@ void changeMode() {
   }
 
   if ((millis() - countTime) > SETUP_TRIGGER_TIME) {
-     noseDirection = (noseDirection++)%2;
+     noseDirection = (noseDirection+1)%2;
   }
 
 
   if ((millis()- countTime) >= EJECTION_TRIGGER_TIME && (millis()-countTime) < SETUP_TRIGGER_TIME) {
 
-    Serial.println(noseDirection);
 
     int startTime = millis();
     while (millis() - startTime < EXTEND_TIME) {

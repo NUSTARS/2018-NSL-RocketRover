@@ -69,7 +69,7 @@ void changeMode() {
   }
 
   if ((millis() - countTime) > SETUP_TRIGGER_TIME) {
-     noseDirection = (noseDirection++)%2;
+     noseDirection = (noseDirection+1)%2;
   }
   
   if ((millis()- countTime) >= EJECTION_TRIGGER_TIME && (millis()-countTime) < SETUP_TRIGGER_TIME) {
