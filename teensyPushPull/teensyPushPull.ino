@@ -56,7 +56,7 @@ void changeMode() {
         digitalWrite(PIN_LED, LOW);
       }
     }
-    else if (millis()-countTime > SETUP_TRIGGER_TIME) {
+    if (millis()-countTime > SETUP_TRIGGER_TIME) {
       if (noseDirection == 0) {
         deployRover(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
       }

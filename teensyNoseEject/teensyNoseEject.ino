@@ -48,6 +48,7 @@ void changeMode() {
   digitalWrite(PIN_LED, HIGH);
 
   int countTime = millis();
+  
   while (digitalRead(PIN_COMMS) == LOW) { //LOW is on in this case (or touching)
     if (millis()-countTime > EJECTION_TRIGGER_TIME) {
       if (countTime%1000 < 500) {
@@ -57,7 +58,7 @@ void changeMode() {
         digitalWrite(PIN_LED, LOW);
       }
     }
-    else if (millis()-countTime > SETUP_TRIGGER_TIME) {
+    if (millis()-countTime > SETUP_TRIGGER_TIME) {
       if (noseDirection == 0) {
         openCone(PIN_SLEEP, PIN_PHASE, PIN_ENABLE);
       }
