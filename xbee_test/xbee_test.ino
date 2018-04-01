@@ -12,29 +12,31 @@ Hardware Hookup:
 
 *****************************************************************/
 // We'll use SoftwareSerial to communicate with the XBee:
-#include <SoftwareSerial.h>
 // XBee's DOUT (TX) is connected to pin 2 (Arduino's Software RX)
 // XBee's DIN (RX) is connected to pin 3 (Arduino's Software TX)
-SoftwareSerial XBee(2, 3); // RX, TX
 
 void setup()
 {
   // Set up both ports at 9600 baud. This value is most important
   // for the XBee. Make sure the baud rate matches the config
   // setting of your XBee.
-  XBee.begin(19200);
   Serial.begin(19200);
+  Serial1.begin(19200);
+  pinMode(13, OUTPUT);
+  Serial.println("PowerOn");
+  
 }
 
 void loop()
 {
-  if (Serial.available())
+  digitalWrite(13, LOW);
+  if (Serial1.available())
   { // If data comes in from serial monitor, send it out to XBee
-    XBee.write(Serial.read());
+    Serial.println(Serial1.read());
+    digitalWrite(13, HIGH);
+    delay(2000);
   }
-  if (XBee.available())
-  { // If data comes in from XBee, send it out to serial monitor
-    Serial.write(XBee.read());
-
-  }
+  Serial1.write("TEST/n");
+  delay(2000);
+  
 }
