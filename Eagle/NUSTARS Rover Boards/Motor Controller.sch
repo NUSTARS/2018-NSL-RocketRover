@@ -3681,18 +3681,29 @@ grid 2.54 mm</description>
 <wire x1="26.67" y1="1.27" x2="25.4" y2="0" width="0.127" layer="21" curve="-90"/>
 <wire x1="25.4" y1="0" x2="1.27" y2="0" width="0.127" layer="21"/>
 <wire x1="1.27" y1="0" x2="0" y2="1.27" width="0.127" layer="21" curve="-90"/>
-<dimension x1="0" y1="-1.27" x2="26.67" y2="-1.27" x3="13.335" y3="-2.54" textsize="1.27" layer="21" unit="inch"/>
-<dimension x1="0" y1="-1.27" x2="0" y2="19.05" x3="-2.54" y3="8.89" textsize="1.27" layer="21" unit="inch"/>
-<pad name="SDA" x="14.605" y="1.27" drill="1"/>
-<pad name="GND" x="12.065" y="1.27" drill="1"/>
-<pad name="3V" x="9.525" y="1.27" drill="1"/>
-<pad name="SCL" x="17.145" y="1.27" drill="1"/>
-<pad name="VIN" x="6.985" y="1.27" drill="1"/>
-<pad name="RST" x="19.685" y="1.27" drill="1"/>
-<pad name="PS1" x="12.065" y="17.78" drill="1"/>
-<pad name="INT" x="14.605" y="17.78" drill="1"/>
-<pad name="ADR" x="17.145" y="17.78" drill="1"/>
-<pad name="PS0" x="9.525" y="17.78" drill="1"/>
+<dimension x1="0" y1="-1.27" x2="26.67" y2="-1.27" x3="13.335" y3="-2.54" textsize="1.27" layer="48" unit="inch"/>
+<dimension x1="0" y1="-1.27" x2="0" y2="19.05" x3="-2.54" y3="8.89" textsize="1.27" layer="48" unit="inch"/>
+<pad name="SDA" x="14.605" y="1.27" drill="1" diameter="1.9304"/>
+<pad name="GND" x="12.065" y="1.27" drill="1" diameter="1.9304"/>
+<pad name="3V" x="9.525" y="1.27" drill="1" diameter="1.9304"/>
+<pad name="SCL" x="17.145" y="1.27" drill="1" diameter="1.9304"/>
+<pad name="VIN" x="6.985" y="1.27" drill="1" diameter="1.9304"/>
+<pad name="RST" x="19.685" y="1.27" drill="1" diameter="1.9304"/>
+<pad name="PS1" x="12.065" y="17.78" drill="1" diameter="1.9304"/>
+<pad name="INT" x="14.605" y="17.78" drill="1" diameter="1.9304"/>
+<pad name="ADR" x="17.145" y="17.78" drill="1" diameter="1.9304"/>
+<pad name="PS0" x="9.525" y="17.78" drill="1" diameter="1.9304"/>
+<text x="7.62" y="2.54" size="1.27" layer="21" rot="R90">VIN</text>
+<text x="10.16" y="2.54" size="1.27" layer="21" rot="R90">3V</text>
+<text x="12.7" y="2.54" size="1.27" layer="21" rot="R90">GND</text>
+<text x="15.24" y="2.54" size="1.27" layer="21" rot="R90">SDA</text>
+<text x="17.78" y="2.54" size="1.27" layer="21" rot="R90">SCL</text>
+<text x="20.32" y="2.54" size="1.27" layer="21" rot="R90">RST</text>
+<text x="8.89" y="16.51" size="1.27" layer="21" rot="R270">PS0</text>
+<text x="11.43" y="16.51" size="1.27" layer="21" rot="R270">PS1</text>
+<text x="13.97" y="16.51" size="1.27" layer="21" rot="R270">INT</text>
+<text x="16.51" y="16.51" size="1.27" layer="21" rot="R270">ADR</text>
+<text x="13.335" y="8.89" size="2.032" layer="21" align="bottom-center">BNO055</text>
 </package>
 </packages>
 <symbols>

@@ -24,7 +24,7 @@ SoftwareSerial XBee(2, 3); // RX, TX
 
 void setup()
 {
-  // Set up both ports at 9600 baud. This value is most important
+  // Set up both ports at 19200 baud. This value is most important
   // for the XBee. Make sure the baud rate matches the config
   // setting of your XBee.
   XBee.begin(19200);

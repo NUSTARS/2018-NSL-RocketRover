@@ -32,11 +32,9 @@ void loop()
   digitalWrite(13, LOW);
   if (Serial1.available())
   { // If data comes in from serial monitor, send it out to XBee
-    Serial.println(Serial1.read());
+    Serial.write(Serial1.read());
     digitalWrite(13, HIGH);
-    delay(2000);
+    
   }
-  Serial1.write("TEST/n");
-  delay(2000);
   
 }
