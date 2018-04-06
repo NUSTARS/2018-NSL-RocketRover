@@ -9,18 +9,20 @@ int left2 = 6;
 int right1 = 9;
 int right2 = 10;
 int adrPin = A0;
+int resetPin = A1;
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 bool gotAvg = false;
 const float adjustmentAngle = 5;
-const float backMovementAmount = 1000; 
-const float turnMovementAmount = 1000;
-const float pauseTime = 500;
+const float backMovementAmount = 100; 
+const float turnMovementAmount = 100;
+const float pauseTime = 100;
 float startAngle = 0;
 float totalTurnAngle = 90;
 float startMillis;
 bool calibrated = false;
 bool inRange = false;
 bool atEnd = false;
+  bool onBack = true;
 #define BNO055_SAMPLERATE_DELAY_MS (100)
 
 void setup()
@@ -93,7 +95,14 @@ void loop()
       delay(pauseTime);
       digitalWrite(sleepPin, HIGH);
       //MOVE BACK 
+      if (onBack) {
       backwards(left1, left2, right1, right2, 0);
+      onBack = false;
+      }
+     else {
+       forwards(left1, left2, right1, right2, 0);
+       onBack = true;
+      }
       delay(backMovementAmount);
       digitalWrite(sleepPin, LOW);
       delay(pauseTime);
